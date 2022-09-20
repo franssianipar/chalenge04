@@ -11,11 +11,11 @@ export default function Todoinput(){
                             <FaBook className="w-11 text-white"/>
                     </button>
                 </div>
-                <input type="text" className="flex-auto focus:outline-0 p-1 pl-12 border-2 border-gray h-11" placeholder="Search Todo"/>
+                <input type="text" className="flex-auto focus:outline-0 p-1 pl-12 border-2 border-gray h-11" placeholder="Input/Edit Todo"/>
             </div>
             
             <div className="flex-auto flex">
-                <button className="flex-auto bg-cyan-400 mx-9 h-10 mt-5 mb-5 "> Search </button>
+                <button className="flex-auto bg-cyan-400 mx-9 h-10 mt-5 mb-5 "> Submit</button>
             </div>
         </div>
         </>

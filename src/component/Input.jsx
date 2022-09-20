@@ -1,4 +1,5 @@
 import {FaSearch} from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 export default function Input() {
     return (
@@ -16,7 +17,10 @@ export default function Input() {
                 
                 <div>
                     <button className="bg-cyan-400 w-6/12 ml-12 mr-9 h-10 mt-5 mb-5"> Search </button>
-                    <button className="bg-cyan-400 w-96 ml-12 mr-9 h-10 mt-5 mb-5"> Add new task</button>
+                    <Link to="/create">
+                        <button className="bg-cyan-400 w-96 ml-12 mr-9 h-10 mt-5 mb-5" > Add new task</button>
+                    </Link>
+                    
                 </div>
             </div>
         </>

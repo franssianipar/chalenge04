@@ -7,9 +7,8 @@ import Todoinput from './component/Todoinput';
 const App=()=>{
   return(
     <Routes>
-      <Route path="/" element = {<Todoinput/>}/>
-      
-
+      <Route path="/" element = {<Main/>}/>
+      <Route path="/create" element ={<Todoinput/>}/>
     </Routes>
   )
 }
