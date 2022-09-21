@@ -8,7 +8,8 @@ const App=()=>{
   return(
     <Routes>
       <Route path="/" element = {<Main/>}/>
-      <Route path="/create" element ={<Todoinput/>}/>
+      <Route path="/create" element={<Todoinput/>}/>
+      <Route path="/update/:id" element={<Todoinput/>}/>  
     </Routes>
   )
 }

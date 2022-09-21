@@ -1,6 +1,60 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { FaBook } from "react-icons/fa"
+import { useNavigate, useParams } from "react-router-dom"
 
 export default function Todoinput(){
+    const [inputan,setInputan]= useState('')
+    const[data,setData] =useState({})
+    const navigate = useNavigate()
+    const { id } = useParams()
+
+    const addtodoList = ()=>{
+        axios.post('https://fake-api-coba.herokuapp.com/todos/',{
+            task:inputan,complete:false
+        }).then((resp)=>{
+            console.log(resp)
+            setInputan("")
+            navigate('/')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+
+    useEffect(()=>{
+
+        if(id !==undefined){
+        axios.get('https://fake-api-coba.herokuapp.com/todos/' + id)
+            .then((resp)=>{
+                console.log(resp)
+                setData(resp.data)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+
+        }
+
+        
+
+    }, [id])
+    
+    const updateTodolist=()=>{
+        axios.patch('https://fake-api-coba.herokuapp.com/todos/' + id,{
+            task:inputan
+        }).then((resp)=>{
+            console.log(resp)
+            setInputan("")
+            navigate('/')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+
     return(
         <>
         <h1 className="text-center text-5xl mb-5" > TodoInput </h1>
@@ -11,11 +65,20 @@ export default function Todoinput(){
                             <FaBook className="w-11 text-white"/>
                     </button>
                 </div>
-                <input type="text" className="flex-auto focus:outline-0 p-1 pl-12 border-2 border-gray h-11" placeholder="Input/Edit Todo"/>
+                <input type="text" onChange={function(e){
+                    setInputan(e.target.value)
+                }} defaultValue={data.task} className="flex-auto focus:outline-0 p-1 pl-12 border-2 border-gray h-11" placeholder="Input/Edit Todo"/>
             </div>
             
             <div className="flex-auto flex">
-                <button className="flex-auto bg-cyan-400 mx-9 h-10 mt-5 mb-5 "> Submit</button>
+                <button className="flex-auto bg-cyan-400 mx-9 h-10 mt-5 mb-5 " onClick={function(){
+                    if(id!== undefined){
+                        updateTodolist()
+                    }
+                    else{
+                        addtodoList()
+                    }
+                }}> Submit</button>
             </div>
         </div>
         </>
