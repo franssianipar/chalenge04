@@ -30,14 +30,13 @@ export default function Todoinput(){
             .then((resp)=>{
                 console.log(resp)
                 setData(resp.data)
+                setInputan(resp.data.task)
             })
             .catch((err)=>{
                 console.log(err)
             })
 
         }
-
-        
 
     }, [id])
     
