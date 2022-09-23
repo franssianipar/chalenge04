@@ -8,6 +8,17 @@ export default function Main(){
     const[search,setSearch] = useState('')
     const [todolist, setTodolist] = useState([])
 
+    const deleteTask = (id)=>{
+        axios.delete('https://fake-api-coba.herokuapp.com/todos/' + id)
+        .then((resp)=>{
+            console.log(resp)
+            fetch()
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
     const fetch = useCallback(() => {
         axios.get('https://fake-api-coba.herokuapp.com/todos/')
         .then((resp) => {
@@ -40,12 +51,11 @@ export default function Main(){
         fetch()
     }, [filter, search, fetch])
 
-
-
+   
     return(
         <>
         <Input todolist={todolist} setTodolist={setTodolist} setSearch={setSearch}/>
-        <Todolist todolist={todolist} setTodolist={setTodolist} setFilter={setFilter} filter={filter} fetch={fetch}/>
+        <Todolist todolist={todolist} setTodolist={setTodolist} setFilter={setFilter} filter={filter} fetch={fetch} deleteTask={deleteTask} />
         </>
         
     )

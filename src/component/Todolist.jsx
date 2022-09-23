@@ -15,7 +15,11 @@ export default function Todolist(props){
             console.log(err)
         })
     }
-    
+
+    const Returncomplete=(todolist)=>{
+        return todolist.filter((list)=>list.complete===true)
+    }
+
     return(
         <>
         <h1 className="text-center text-5xl mb-5"> TodoList</h1>
@@ -46,8 +50,17 @@ export default function Todolist(props){
         }
 
         <div className="flex">
-            <button className="flex-auto mx-12 w-6/12 bg-cyan-400 w-96 h-10 mt-5 mb-5"> Delete done Task</button>
-            <button className="flex-auto mx-12 w-6/12 bg-cyan-400 w-96 h-10 mt-5 mb-5"> Delete all Task</button>
+        <button className="flex-auto mx-12 w-6/12 bg-cyan-400 w-96 h-10 mt-5 mb-5"onClick={function(){
+                    for(let i = 0; i < props.todolist.length; i++){
+                        if(props.todolist[i].complete){
+                            props.deleteTask(props.todolist[i].id)
+                        }
+                     }}}> Delete done Task</button>  
+            <button className="flex-auto mx-12 w-6/12 bg-cyan-400 w-96 h-10 mt-5 mb-5"onClick={function(){
+                    for(let i = 0; i < props.todolist.length; i++){
+                        props.deleteTask(props.todolist[i].id)
+                    }}}
+                    > Delete all Task</button>
         </div>
         
         </>
