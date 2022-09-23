@@ -16,10 +16,6 @@ export default function Todolist(props){
         })
     }
 
-    const Returncomplete=(todolist)=>{
-        return todolist.filter((list)=>list.complete===true)
-    }
-
     return(
         <>
         <h1 className="text-center text-5xl mb-5"> TodoList</h1>
